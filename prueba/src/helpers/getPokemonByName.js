@@ -1,3 +1,5 @@
+/* Help to get the pokemon by name */
+
 export const getPokemonByName = (pokemons, name='') => {
     if (name==null ){
       name=''
