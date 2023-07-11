@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { PokemonCard } from "./PokemonCard";
 import Swal from "sweetalert2";
+import { LetterTable } from "./LetterTable";
 
 export const Table = () => {
   const {
@@ -93,6 +94,9 @@ export const Table = () => {
           ) : (
             <PokemonCard {...pokemonsDetails} />
           )}
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <LetterTable />
         </Grid>
       </Grid>
     </>

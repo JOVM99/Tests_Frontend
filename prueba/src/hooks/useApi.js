@@ -2,17 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { getPokemonByName } from "../helpers/getPokemonbyName";
+import { getNamebyLetter } from "../helpers/getNamebyLetter";
 
 export const useApi = () => {
   const [pokemons, setPokemons] = useState([]);
   const [pokemons2, setPokemons2] = useState([]);
   const [pokemonsDetails, setPokemonsDetails] = useState([]);
+  const [pokemonsByLetter, setPokemonsByLetter] = useState([]);
   const [rowSelectionModel, setRowSelectionModel] = useState();
   const [value, setValue] = useState("");
 
   useEffect(() => {
     getPokemons();
   }, []);
+
   const getPokemons = async () => {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
     const resp = await fetch(url);
@@ -22,6 +25,7 @@ export const useApi = () => {
     for (let d = 0; d < 1281; d++) {
       p.push({ id: 1 + d, name: r[d].name });
     }
+    setPokemonsByLetter(getNamebyLetter(p))
     setPokemons(p);
     setPokemons2(p);
   };
@@ -50,6 +54,7 @@ export const useApi = () => {
     pokemons2,
     rowSelectionModel,
     value,
+    pokemonsByLetter,
     pokemonsDetails,
     setValue,
     handleChange,
